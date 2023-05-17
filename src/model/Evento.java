@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -36,7 +37,7 @@ public class Evento {
 	private int numeroMassimoPartecipanti;
 	
 	@OneToMany(cascade =  {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH} )
-	private List <Partecipazione> listaPersonePartecipanti;
+	private List <Partecipazione> listaPersonePartecipanti= new ArrayList<Partecipazione>();
 	
 	@OneToOne(cascade =  {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH} )
 	private Location location;

@@ -8,8 +8,10 @@ import javax.persistence.Persistence;
 
 import model.Evento;
 import model.Location;
+import model.Partecipazione;
 import model.Persona;
 import model.SessoPersona;
+import model.StatoEvento;
 import model.TipoEvento;
 
 
@@ -32,10 +34,18 @@ public class MainProject {
 		//System.out.println(e);
 		//statoPrecedenteEvento(e);
 		//System.out.println(e);
-		inserisciPersona(new Persona("Martina", "Bianchi", "m.bianchi@icloud.com", LocalDate.of(2003,10,18), SessoPersona.Femmina));
+		//inserisciPersona(new Persona("Martina", "Bianchi", "m.bianchi@icloud.com", LocalDate.of(1990,10,28), SessoPersona.Femmina));
 		//cancellaPersona(new Persona("Hansel", "Adjei", "h.adjei@icloud.com", LocalDate.of(2003,10,18), SessoPersona.Maschio));
 		//System.out.println(cercaPersona(1));	
-		
+		//Persona Hansel=(cercaPersona(1));
+		//Location l=new Location("Old Fashion", "Milano");
+		//inserisciLocation(l);
+		Location l=(cercaLocation(1));
+		Evento e= new Evento("Mambo disco", LocalDate.of(2023,06,18), "Serata con Mambolosco", TipoEvento.PUBBLICO, 100, l);
+		//inserisciEvento(e);
+		Persona h=(cercaPersona(1));
+		h.addEventoPartecipazione(new Partecipazione(h,e,StatoEvento.CONFERMATA));
+		//Hansel.addEventoPartecipazione(new Partecipazione(Hansel, null, StatoEvento.DA_CONFERMARE));
 		
 		}catch(Exception e) {
 			System.out.println("ERRORE! "+e);
@@ -71,6 +81,7 @@ public class MainProject {
 		System.out.println("La location: "+l.getNome()+" è stato salvato nel Database");
 	}
 	
+	
 	public static Evento cercaEvento(long i) {
 		em.getTransaction().begin();
 		Evento s=em.find(Evento.class, i);
@@ -84,6 +95,14 @@ public class MainProject {
 		em.getTransaction().commit();
 		return p;
 	}
+	
+	public static Location cercaLocation(long i) {
+		em.getTransaction().begin();
+		Location l=em.find(Location.class, i);
+		em.getTransaction().commit();
+		return l;
+	}
+	
 	
 	public static void cancellaEvento(Evento e) {
 		em.getTransaction().begin();

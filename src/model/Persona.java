@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -36,14 +37,13 @@ public class Persona {
 	
 	@OneToMany
 	@Column(name="lista_partecipazioni")
-	private List<Partecipazione> listaPartecipazioni;
+	private List<Partecipazione> listaPartecipazioni=new ArrayList<Partecipazione>();
 	
 	
 	
 	
 	
 	public Persona(String nome, String cognome, String email, LocalDate dataDiNascita, SessoPersona sesso) {
-		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;

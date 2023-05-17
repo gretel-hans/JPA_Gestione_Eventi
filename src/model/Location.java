@@ -18,9 +18,8 @@ public class Location {
 	
 	private String citta;
 
-	public Location(long id, String nome, String citta) {
+	public Location( String nome, String citta) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.citta = citta;
 	}
@@ -31,10 +30,6 @@ public class Location {
 
 	public long getId() {
 		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getNome() {
