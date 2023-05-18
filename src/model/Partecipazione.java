@@ -26,7 +26,6 @@ public class Partecipazione {
 	private StatoEvento stato;
 
 	public Partecipazione(Persona persona, Evento evento, StatoEvento stato) {
-		super();
 		this.persona = persona;
 		this.evento = evento;
 		this.stato = stato;

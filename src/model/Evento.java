@@ -11,8 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -37,9 +37,9 @@ public class Evento {
 	private int numeroMassimoPartecipanti;
 	
 	@OneToMany(cascade =  {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH} )
-	private List <Partecipazione> listaPersonePartecipanti= new ArrayList<Partecipazione>();
+	private List <Partecipazione> listaPersonePartecipanti;
 	
-	@OneToOne(cascade =  {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH} )
+	@ManyToOne(cascade =  {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH} )
 	private Location location;
 	
 	
@@ -55,13 +55,14 @@ public class Evento {
 		this.tipoEvento = tipoEvento;
 		this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
 		this.location = location;
+		this.listaPersonePartecipanti= new ArrayList<Partecipazione>();
 	}
 
 	public Evento() {
 		super();
 	}
 	
-	public List getPartecipazioni() {
+	public List<Partecipazione> getPartecipazioni() {
 		return listaPersonePartecipanti;
 	}
 	

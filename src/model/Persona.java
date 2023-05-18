@@ -37,7 +37,7 @@ public class Persona {
 	
 	@OneToMany
 	@Column(name="lista_partecipazioni")
-	private List<Partecipazione> listaPartecipazioni=new ArrayList<Partecipazione>();
+	private List<Partecipazione> listaPartecipazioni;
 	
 	
 	
@@ -49,6 +49,7 @@ public class Persona {
 		this.email = email;
 		this.dataDiNascita = dataDiNascita;
 		this.sesso = sesso;
+		this.listaPartecipazioni=new ArrayList<Partecipazione>();
 	}
 	
 	
@@ -122,12 +123,6 @@ public class Persona {
 
 	public long getId() {
 		return id;
-	}
-
-
-
-	public void addEventoPartecipazione(Partecipazione p) {
-		listaPartecipazioni.add(p);
 	}
 	
 	public List<Partecipazione> getListaPartecipazioni() {

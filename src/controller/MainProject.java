@@ -38,13 +38,16 @@ public class MainProject {
 		//cancellaPersona(new Persona("Hansel", "Adjei", "h.adjei@icloud.com", LocalDate.of(2003,10,18), SessoPersona.Maschio));
 		//System.out.println(cercaPersona(1));	
 		//Persona Hansel=(cercaPersona(1));
-		//Location l=new Location("Old Fashion", "Milano");
+		Location l=new Location("Old Fashion", "Milano");
 		//inserisciLocation(l);
-		Location l=(cercaLocation(1));
-		Evento e= new Evento("Mambo disco", LocalDate.of(2023,06,18), "Serata con Mambolosco", TipoEvento.PUBBLICO, 100, l);
-		//inserisciEvento(e);
-		Persona h=(cercaPersona(1));
-		h.addEventoPartecipazione(new Partecipazione(h,e,StatoEvento.CONFERMATA));
+		//cancellaLocation(cercaLocation(2));
+		//Location l=(cercaLocation(1));
+		//Evento e= new Evento("Mambo disco", LocalDate.of(2023,06,18), "Serata con Mambolosco", TipoEvento.PUBBLICO, 100, l);
+		//inserisciEvento(new Evento("Mambo disco", LocalDate.of(2023,06,18), "Serata con Mambolosco", TipoEvento.PUBBLICO, 100, cercaLocation(1)));
+		//Persona h=(cercaPersona(1));
+		//inserisciPartecipazione(new Partecipazione(cercaPersona(1),cercaEvento(1),StatoEvento.CONFERMATA));
+		System.out.println(cercaPersona(1));
+		//Partecipazione par= (new Partecipazione(h,e,StatoEvento.CONFERMATA));
 		//Hansel.addEventoPartecipazione(new Partecipazione(Hansel, null, StatoEvento.DA_CONFERMARE));
 		
 		}catch(Exception e) {
@@ -71,7 +74,7 @@ public class MainProject {
 		em.getTransaction().begin();
 		em.persist(p);
 		em.getTransaction().commit();
-		System.out.println("La persona: "+p.getNome()+" è stato salvato nel Database");
+		System.out.println(p.getNome()+" è stato salvato nel Database");
 	}
 	
 	public static void inserisciLocation(Location l) {
@@ -79,6 +82,13 @@ public class MainProject {
 		em.persist(l);
 		em.getTransaction().commit();
 		System.out.println("La location: "+l.getNome()+" è stato salvato nel Database");
+	}
+	
+	public static void inserisciPartecipazione(Partecipazione p) {
+		em.getTransaction().begin();
+		em.persist(p);
+		em.getTransaction().commit();
+		System.out.println("La partecipazione di: "+p.getPersona().getNome()+" all'evento: "+p.getEvento().getTitolo() +" è stato salvato nel Database");
 	}
 	
 	
@@ -117,6 +127,15 @@ public class MainProject {
 		em.getTransaction().commit();
 		System.out.println("la persona: "+p.getNome()+" è rimosso dal Database");
 	}
+	
+	public static void cancellaLocation(Location l) {
+		em.getTransaction().begin();
+		em.remove(l);
+		em.getTransaction().commit();
+		System.out.println("la location: "+l.getNome()+" è rimosso dal Database");
+	}
+	
+	
 	
 	public static void modificaEvento(Evento e) {
 		em.getTransaction().begin();
